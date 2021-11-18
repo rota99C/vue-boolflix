@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       queryUtente: "",
+      films: [],
     };
   },
   methods: {
@@ -26,7 +27,8 @@ export default {
           `https://api.themoviedb.org/3/search/movie?api_key=7f9dcddd316d242d826f1a99e0924dcb&language=it%3DIT&query=${this.queryUtente}&page=1&include_adult=false`
         )
         .then(function (response) {
-          console.log(response.data);
+          //console.log(response.data.results);
+          this.films = response.data.results;
         })
         .catch((error) => {
           console.error(error);
