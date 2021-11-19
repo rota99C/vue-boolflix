@@ -20,7 +20,7 @@
           size="normal"
         />
       </p>
-      <p>{{ movie.vote_average }}</p>
+      <p>{{ Math.ceil(movie.vote_average / 2) }}</p>
     </div>
     <!-- ! fine movies -->
 
@@ -38,7 +38,7 @@
           size="normal"
         />
       </p>
-      <p>{{ tvShow.vote_average }}</p>
+      <p>{{ Math.ceil(tvShow.vote_average / 2) }}</p>
     </div>
   </div>
 </template>
@@ -69,17 +69,7 @@ export default {
       let reqTvShow = axios.get(
         `https://api.themoviedb.org/3/search/tv?api_key=${this.api_key}&query=${this.queryUtente}`
       );
-      /*  axios
-        .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.queryUtente}`
-        )
-        .then((response) => {
-          this.movies = response.data.results;
-          
-          }
-        })
-        
-        }); */
+
       axios.all([reqMovie, reqTvShow]).then(
         axios.spread((...responses) => {
           this.movies = responses[0].data.results;
