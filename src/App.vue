@@ -9,7 +9,16 @@
     <div v-for="movie in movies" :key="movie.id">
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.original_title }}</p>
-      <p>{{ movie.original_language }}</p>
+      <p class="language">
+        {{ movie.original_language }}
+        <!-- eccezione: UK, nella API registrata come EN, nel componente CountryFlag come GB -->
+        <country-flag
+          :country="
+            movie.original_language == 'en' ? 'gb' : movie.original_language
+          "
+          size="normal"
+        />
+      </p>
       <p>{{ movie.vote_average }}</p>
     </div>
   </div>
@@ -17,9 +26,13 @@
 
 <script>
 import axios from "axios";
+import CountryFlag from "vue-country-flag";
+
 export default {
   name: "App",
-  components: {},
+  components: {
+    CountryFlag,
+  },
   data() {
     return {
       queryUtente: "",
