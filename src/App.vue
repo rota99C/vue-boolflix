@@ -9,7 +9,7 @@
     <div v-for="movie in movies" :key="movie.id">
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.original_title }}</p>
-      <p class="language">
+      <p>
         {{ movie.original_language }}
         <!-- eccezione: UK, nella API registrata come EN, nel componente CountryFlag come GB -->
         <country-flag
@@ -20,6 +20,23 @@
         />
       </p>
       <p>{{ movie.vote_average }}</p>
+    </div>
+    <!-- ! fine movies -->
+
+    <div v-for="tvShow in tvShows" :key="tvShow.id">
+      <h1>{{ tvShow.name }}</h1>
+      <p>{{ tvShow.original_name }}</p>
+      <p>
+        {{ tvShow.original_language }}
+        <!-- eccezione: UK, nella API registrata come EN, nel componente CountryFlag come GB -->
+        <country-flag
+          :country="
+            tvShow.original_language == 'en' ? 'gb' : tvShow.original_language
+          "
+          size="normal"
+        />
+      </p>
+      <p>{{ tvShow.vote_average }}</p>
     </div>
   </div>
 </template>
@@ -35,25 +52,42 @@ export default {
   },
   data() {
     return {
+      api_key: "7f9dcddd316d242d826f1a99e0924dcb",
       queryUtente: "",
       movies: [],
+      tvShows: [],
     };
   },
   methods: {
     submitSearch() {
-      axios
+      let reqMovie = axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.queryUtente}`
+      );
+      let reqTvShow = axios.get(
+        `https://api.themoviedb.org/3/search/tv?api_key=${this.api_key}&query=${this.queryUtente}`
+      );
+      /*  axios
         .get(
-          `https://api.themoviedb.org/3/search/movie?api_key=7f9dcddd316d242d826f1a99e0924dcb&language=it%3DIT&query=${this.queryUtente}`
+          `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.queryUtente}`
         )
         .then((response) => {
-          //console.log(response.data.results);
-          //console.log(this.queryUtente);
           this.movies = response.data.results;
-          //console.log(this.movies);
+          
+          }
         })
-        .catch((error) => {
-          console.error(error);
-        });
+        
+        }); */
+      axios.all([reqMovie, reqTvShow]).then(
+        axios.spread((...responses) => {
+          this.movies = responses[0].data.results;
+          console.log(this.movies);
+          this.tvShows = responses[1].data.results;
+          console.log(this.tvShows);
+        })
+        /* .catch((error) => {
+            console.error(error);
+          }) */
+      );
     },
   },
 };
