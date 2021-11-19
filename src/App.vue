@@ -7,6 +7,7 @@
     />
     <button @click="submitSearch">cerca</button>
     <div v-for="movie in movies" :key="movie.id">
+      <img :src="startUrl + movie.poster_path" alt="" />
       <h1>{{ movie.title }}</h1>
       <p>{{ movie.original_title }}</p>
       <p>
@@ -24,6 +25,7 @@
     <!-- ! fine movies -->
 
     <div v-for="tvShow in tvShows" :key="tvShow.id">
+      <img :src="startUrl + tvShow.poster_path" alt="" />
       <h1>{{ tvShow.name }}</h1>
       <p>{{ tvShow.original_name }}</p>
       <p>
@@ -56,6 +58,7 @@ export default {
       queryUtente: "",
       movies: [],
       tvShows: [],
+      startUrl: "https://image.tmdb.org/t/p/w500/",
     };
   },
   methods: {
@@ -80,9 +83,9 @@ export default {
       axios.all([reqMovie, reqTvShow]).then(
         axios.spread((...responses) => {
           this.movies = responses[0].data.results;
-          console.log(this.movies);
+          /* console.log(this.movies); */
           this.tvShows = responses[1].data.results;
-          console.log(this.tvShows);
+          /* console.log(this.tvShows); */
         })
         /* .catch((error) => {
             console.error(error);
