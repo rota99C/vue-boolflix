@@ -1,11 +1,15 @@
 <template>
   <div id="app">
-    <input
+    <siteHeader />
+    <!-- <input
       v-model="queryUtente"
       type="text"
       placeholder="Digita il nome di un film"
     />
-    <button @click="submitSearch">cerca</button>
+    <button @click="submitSearch">cerca</button> -->
+
+    <siteMain />
+
     <div v-for="movie in movies" :key="movie.id">
       <img :src="startUrl + movie.poster_path" alt="" />
       <h1>{{ movie.title }}</h1>
@@ -46,11 +50,15 @@
 <script>
 import axios from "axios";
 import CountryFlag from "vue-country-flag";
+import siteHeader from "./components/siteHeader.vue";
+import siteMain from "./components/siteMain.vue";
 
 export default {
   name: "App",
   components: {
     CountryFlag,
+    siteHeader,
+    siteMain,
   },
   data() {
     return {
@@ -87,4 +95,9 @@ export default {
 </script>
 
 <style lang="scss">
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 </style>
