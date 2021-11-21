@@ -16,8 +16,7 @@ library.add(fas)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
-Vue.use(VueAxios, axios,
-)
+Vue.use(VueAxios, axios,)
 
 Vue.config.productionTip = false
 

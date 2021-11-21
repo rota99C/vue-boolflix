@@ -11,8 +11,9 @@
         v-model="queryUtente"
         type="text"
         placeholder="Digita il nome di un film"
+        @keyup.enter="search"
       />
-      <button @click="$emit('submitSearch', queryUtente)">
+      <button @click="search">
         <font-awesome-icon :icon="['fas', 'search']" />
       </button>
     </div>
@@ -21,6 +22,8 @@
 
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import EventBus from "../event-bus";
+
 export default {
   components: {
     FontAwesomeIcon,
@@ -30,6 +33,11 @@ export default {
       api_key: "7f9dcddd316d242d826f1a99e0924dcb",
       queryUtente: "",
     };
+  },
+  methods: {
+    search() {
+      EventBus.$emit("submitSearch", this.queryUtente);
+    },
   },
 };
 </script>

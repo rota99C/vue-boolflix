@@ -1,13 +1,6 @@
 <template>
   <div id="app">
     <siteHeader />
-    <!-- <input
-      v-model="queryUtente"
-      type="text"
-      placeholder="Digita il nome di un film"
-    />
-    <button @click="submitSearch">cerca</button> -->
-
     <siteMain />
 
     <div v-for="movie in movies" :key="movie.id">
@@ -61,36 +54,9 @@ export default {
     siteMain,
   },
   data() {
-    return {
-      api_key: "7f9dcddd316d242d826f1a99e0924dcb",
-      queryUtente: "",
-      movies: [],
-      tvShows: [],
-      startUrl: "https://image.tmdb.org/t/p/w500/",
-    };
+    return {};
   },
-  methods: {
-    submitSearch() {
-      let reqMovie = axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${this.api_key}&query=${this.queryUtente}`
-      );
-      let reqTvShow = axios.get(
-        `https://api.themoviedb.org/3/search/tv?api_key=${this.api_key}&query=${this.queryUtente}`
-      );
-
-      axios.all([reqMovie, reqTvShow]).then(
-        axios.spread((...responses) => {
-          this.movies = responses[0].data.results;
-          /* console.log(this.movies); */
-          this.tvShows = responses[1].data.results;
-          /* console.log(this.tvShows); */
-        })
-        /* .catch((error) => {
-            console.error(error);
-          }) */
-      );
-    },
-  },
+  methods: {},
 };
 </script>
 
