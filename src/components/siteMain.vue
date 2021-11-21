@@ -1,13 +1,36 @@
 <template>
   <div id="siteMain">
-    <div></div>
+    <div class="containerProducts">
+      <products
+        v-for="movie in movies"
+        :key="movie.id"
+        :title="movie.title"
+        :original_title="movie.original_title"
+        :original_language="movie.original_language"
+        :image="startUrl + movie.poster_path"
+        :vote="movie.vote_average"
+      />
+      <products
+        v-for="tvShow in tvShows"
+        :key="tvShow.id"
+        :title="tvShow.name"
+        :original_title="tvShow.original_name"
+        :original_language="tvShow.original_language"
+        :image="startUrl + tvShow.poster_path"
+        :vote="tvShow.vote_average"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import EventBus from "../event-bus";
+import products from "./products.vue";
 export default {
+  components: {
+    products,
+  },
   data() {
     return {
       api_key: "7f9dcddd316d242d826f1a99e0924dcb",
@@ -55,6 +78,12 @@ export default {
 #siteMain {
   background-color: #141414;
   width: 100%;
-  height: calc(100vh - 70px);
+  padding: 30px;
+  min-height: calc(100vh - 70px);
+  .containerProducts {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+  }
 }
 </style>
