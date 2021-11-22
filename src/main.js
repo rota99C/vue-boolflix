@@ -6,6 +6,9 @@ import VueAxios from 'vue-axios'
 import CountryFlag from 'vue-country-flag'
 Vue.component('country-flag', CountryFlag)
 
+
+/* import StarRating from 'vue-star-rating' */
+
 /* fontawesome */
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'

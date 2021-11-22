@@ -24,6 +24,7 @@
 
 <script>
 import CountryFlag from "vue-country-flag";
+
 export default {
   components: {
     CountryFlag,
@@ -56,7 +57,7 @@ export default {
     position: absolute;
     width: 200px;
     height: 290px;
-    background-color: yellow;
+    background-color: black;
     visibility: hidden;
     padding: 10px 10px;
     .flag {
@@ -67,17 +68,20 @@ export default {
       right: -5px;
       margin-bottom: 5px;
     }
-    h1 {
+    h2 {
       margin-top: 10px;
+      color: red;
     }
     .vote_original {
       display: flex;
       justify-content: space-between;
       margin-bottom: 20px;
+      color: lightgray;
     }
     .description {
       overflow-y: auto;
       height: 96px;
+      color: white;
     }
   }
 }

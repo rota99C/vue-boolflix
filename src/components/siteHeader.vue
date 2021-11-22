@@ -6,6 +6,13 @@
         alt="logo-boolflix"
       />
     </div>
+    <nav>
+      <ul>
+        <li>HOME</li>
+        <li>SERIE TV</li>
+        <li>FILM</li>
+      </ul>
+    </nav>
     <div class="searchbar">
       <input
         v-model="queryUtente"
@@ -13,6 +20,7 @@
         placeholder="Digita il nome di un film"
         @keyup.enter="search"
       />
+
       <button @click="search">
         <font-awesome-icon :icon="['fas', 'search']" />
       </button>
@@ -56,17 +64,40 @@ export default {
       height: 100%;
     }
   }
+  .nav {
+    height: 100%;
+    line-height: 0;
+  }
+  li {
+    display: inline-block;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
+    color: white;
+  }
   .searchbar {
     input {
-      width: 150px;
-      height: 30px;
+      width: 180px;
+      box-sizing: border-box;
+      border: 2px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: white;
+      padding: 12px 30px;
+      transition: 3s;
+    }
+    input:focus {
+      width: 300px;
     }
     button {
-      height: 30px;
+      height: 48px;
+      width: 48px;
       margin-left: 10px;
-      background-color: red;
+      background-color: #141414;
       width: 30px;
       color: white;
+      border-style: none;
     }
   }
 }

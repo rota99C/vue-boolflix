@@ -16,7 +16,8 @@
     "svg-country-flags": "^1.2.10",
     "vue": "^2.6.11",
     "vue-axios": "^3.4.0",
-    "vue-country-flag": "^2.2.0"
+    "vue-country-flag": "^2.2.0",
+    "vue-star-rating": "^1.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
