@@ -9,6 +9,7 @@
         :original_language="movie.original_language"
         :image="startUrl + movie.poster_path"
         :vote="movie.vote_average"
+        :description="movie.overview"
       />
       <products
         v-for="tvShow in tvShows"
@@ -18,6 +19,7 @@
         :original_language="tvShow.original_language"
         :image="startUrl + tvShow.poster_path"
         :vote="tvShow.vote_average"
+        :description="tvShow.overview"
       />
     </div>
   </div>
@@ -83,6 +85,7 @@ export default {
   .containerProducts {
     display: flex;
     flex-wrap: wrap;
+
     /* justify-content: space-around; */
   }
 }

@@ -2,17 +2,22 @@
   <div class="singolo">
     <img :src="image" alt="" />
     <div class="info">
-      <h1>{{ title }}</h1>
-      <p>{{ original_title }}</p>
-      <p>
-        {{ original_language }}
-        <!-- eccezione: UK, nella API registrata come EN, nel componente CountryFlag come GB -->
+      <h2>{{ title }}</h2>
+      <div class="flag">
         <country-flag
           :country="original_language == 'en' ? 'gb' : original_language"
           size="normal"
         />
-      </p>
-      <p>{{ Math.ceil(vote / 2) }}</p>
+      </div>
+      <div class="vote_original">
+        <p>{{ original_title }}</p>
+        <p>{{ Math.ceil(vote / 2) }}</p>
+      </div>
+
+      <!-- {{ original_language }} -->
+      <!-- eccezione: UK, nella API registrata come EN, nel componente CountryFlag come GB -->
+
+      <p class="description">{{ description }}</p>
     </div>
   </div>
 </template>
@@ -29,6 +34,7 @@ export default {
     original_title: String,
     original_language: String,
     vote: Number,
+    description: String,
   },
 };
 </script>
@@ -39,7 +45,7 @@ export default {
   height: 290px;
   margin-bottom: 40px;
   position: relative;
-  margin: 0px 10px;
+  margin: 10px 10px;
 
   img {
     height: 100%;
@@ -48,10 +54,31 @@ export default {
   }
   .info {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    width: 200px;
+    height: 290px;
     background-color: yellow;
     visibility: hidden;
+    padding: 10px 10px;
+    .flag {
+      position: absolute;
+      width: 52px;
+      height: 39px;
+      top: -3px;
+      right: -5px;
+      margin-bottom: 5px;
+    }
+    h1 {
+      margin-top: 10px;
+    }
+    .vote_original {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .description {
+      overflow-y: auto;
+      height: 96px;
+    }
   }
 }
 .singolo:hover .info {
